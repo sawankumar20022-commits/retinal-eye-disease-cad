@@ -171,7 +171,7 @@ retinal-eye-disease-cad/
 
 ### 1. Clone Repository & Install Dependencies
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/retinal-eye-disease-cad.git
+git clone https://github.com/sawankumar20022-commits/retinal-eye-disease-cad.git
 cd retinal-eye-disease-cad
 
 # Install dependencies
@@ -257,7 +257,7 @@ To publish this project to your GitHub account:
    git add .
    git commit -m "feat: Initial release of OcuVision-CAD dual-stage retinal screening framework"
    git branch -M main
-   git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/retinal-eye-disease-cad.git
+   git remote add origin https://github.com/sawankumar20022-commits/retinal-eye-disease-cad.git
    git push -u origin main
    ```
 
@@ -286,6 +286,6 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more details
   author = {Kumar, Sawan},
   title = {OcuVision-CAD: Dual-Stage Deep Learning Pipeline for Multi-Disease Retinal Screening},
   year = {2026},
-  url = {https://github.com/your-username/retinal-eye-disease-cad}
+  url = {https://github.com/sawankumar20022-commits/retinal-eye-disease-cad}
 }
 ```
