@@ -1,0 +1,44 @@
+# ==============================================================================
+# Attention U-Net Configuration for Retinal Segmentation
+# ==============================================================================
+
+model:
+  name: "AttentionUNet"
+  in_channels: 1          # 1 for CLAHE-enhanced Green channel, 3 for RGB
+  out_channels: 2         # Dual mask (e.g., Optic Disc & Optic Cup, or Vessel background/foreground)
+  features: [64, 128, 256, 512]
+  deep_supervision: false
+  dropout_rate: 0.15
+  bilinear: false         # Use transposed convolutions for learnable upsampling
+
+training:
+  batch_size: 8
+  num_epochs: 50
+  learning_rate: 0.0003
+  weight_decay: 0.00001
+  lr_scheduler: "CosineAnnealingLR"
+  min_lr: 0.000001
+  loss_function: "ComboLoss" # Combined Focal + Dice Loss
+  loss_weights:
+    focal_weight: 0.5
+    dice_weight: 0.5
+    tversky_alpha: 0.7     # Penalize false negatives more for tiny vessels
+    tversky_beta: 0.3
+  early_stopping_patience: 10
+  save_dir: "checkpoints/unet"
+
+dataset:
+  train_image_dir: "data/processed/train/images"
+  train_mask_dir: "data/processed/train/masks"
+  val_image_dir: "data/processed/val/images"
+  val_mask_dir: "data/processed/val/masks"
+  target_size: [512, 512]
+  patch_based: false
+  patch_size: [256, 256]
+  patch_stride: 128
+  augmentations:
+    horizontal_flip_prob: 0.5
+    vertical_flip_prob: 0.5
+    random_rotate_degrees: 30
+    elastic_transform: false
+    gaussian_blur_prob: 0.2

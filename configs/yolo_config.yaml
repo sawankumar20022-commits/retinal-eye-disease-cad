@@ -1,0 +1,39 @@
+# ==============================================================================
+# YOLO Configuration for Retinal Landmark & Lesion Detection
+# ==============================================================================
+
+model:
+  version: "yolov8m.pt"   # Pretrained backbone (yolov8n.pt, yolov8s.pt, yolov8m.pt)
+  task: "detect"
+  imgsz: 640
+
+training:
+  epochs: 60
+  batch: 16
+  patience: 15
+  optimizer: "AdamW"
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  box: 7.5
+  cls: 0.5
+  dfl: 1.5
+  save_dir: "checkpoints/yolo"
+
+dataset:
+  path: "data/processed/yolo_dataset"
+  train: "images/train"
+  val: "images/val"
+  test: "images/test"
+  names:
+    0: "optic_disc"
+    1: "optic_cup"
+    2: "hemorrhage"
+    3: "hard_exudate"
+    4: "cotton_wool_spot"
+
+roi_extraction:
+  target_class: 0         # Class index for optic_disc
+  padding_factor: 0.40    # Context margin around disc bounding box (40%)
+  min_crop_size: [256, 256]
